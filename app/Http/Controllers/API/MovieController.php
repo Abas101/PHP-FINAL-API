@@ -11,7 +11,6 @@ class MovieController extends Controller
 {
     public function index()
     {
-//        $movies = Movie::select('movies.*', 'categories.category_name')->join('categories', 'categories.id', '=', 'movies.category_id')->get();
         $movies = Movie::with('categories')->get();
         return response()->json([
             'Movies' => $movies
@@ -21,7 +20,6 @@ class MovieController extends Controller
 
     public function findById($id)
     {
-//        $movie = Movie::findOr('categories')->where('movies.id', '=', $id)->get();
         $movie = Movie::with('categories')->find($id);
         return $movie;
     }
@@ -40,7 +38,15 @@ class MovieController extends Controller
     }
 
     public function updateMovie(Request $request, $id) {
-        Movie::find($id)->update($request->all());
+        $movie = Movie::find($id)->update($request->all());
+        return "Updated $movie";
+    }
+
+
+    public function deleteMovie($id)
+    {
+        $movie = Movie::destroy($id);
+        return "Deleted $movie";
     }
 }
 

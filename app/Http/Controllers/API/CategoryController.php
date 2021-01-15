@@ -30,4 +30,13 @@ class CategoryController extends Controller
         $category->save();
         return $category;
     }
+
+    public function deleteCategory($id)
+    {
+        $category = Category::destroy($id);
+        return "Deleted $category";
+
+    }
+
+
 }
