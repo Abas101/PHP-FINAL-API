@@ -2,18 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
+use App\Models\Movie;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class UserFactory extends Factory
+class MovieFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = User::class;
+    protected $model = Movie::class;
 
     /**
      * Define the model's default state.
@@ -23,10 +23,10 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
-            'email_verified_at' => now(),
-            'password' => '$2y$12$dZXQQNGj81ROYfXNjWIXrOXywydcZjbgoj2rXmqtR9MGSTrR.ZkVi ', // password: 12
+            'title' => $this->faker->name,
+            'description' => Str::random(10),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }
